@@ -1,0 +1,15 @@
+<div class="replies">
+	<img class="image" src="'+userimg+'" alt="" />
+  	<div class="bubble you"><form method="POST" action="schedule" class="timer">
+	  	사용자 : <select class="userbox" name="userbox" id="userbox"></select></br>
+	  	<select class="hour" name="hour" id="hour">
+	  	<% for(var i=0;i<12;i++){ %>
+	  		<option value="<%=i%>"><%=i%></option>
+	  	<% } %>
+	  	</select>시 : <select class="minute" name="minute" id="minute"><% for(var i=0;i<60;i++){ %><option value="<%=i%>"><%=i%></option>
+	  	<% } %>
+	  	</select>분 : </br><textarea id="todo" name="todo" class="todo">해야할 일</textarea></br>
+	  	<button type="submit" class="write-link send scheduleBtn" id="scheduleBtn">submit</button>
+	  	</form>
+	 </div>
+</div>

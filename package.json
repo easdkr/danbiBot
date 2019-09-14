@@ -1,0 +1,12 @@
+{
+  "name": "chat",
+  "version": "0.0.1",
+  "description": "my first socket.io app",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "connect-multiparty": "^2.0.0",
+    "express": "^4.15.2",
+    "mongoose": "^4.11.13",
+    "socket.io": "^2.0.3"
+  }
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Socket.IO chat</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/Assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/Assets/css/font-awesome.css"/>
+  </head>
+  <body>
+    <div id="curtain">
+    </div>
+
+    <div class="wrapper">
+      <div class = "login-page">
+        <div class = "form">
+          <span class = "close"><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
+          <input class="form-control" id="id_username" name="username" type="text" placeholder="username" required="">
+          <input class="form-control" id="id_password" name="password" type="password" placeholder="password" required="">
+          <button id="login" class = "login">로그인</button>
+          <p class="message">가입을 안하셨다면? <a href="/regist">회원 가입</a></p>
+        </div>
+      </div>
+    </div>
+   
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src='https://code.jquery.com/jquery.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/Assets/js/script.js"></script>
+  <script src="/Assets/js/jquery-ui.min.js"></script>
+  <script src="/Assets/js/jquery.blockUI.js"></script>
+  <script>
+    $(login).click(function(){
+      var Data = {
+            user_id : $('.form > #id_username').val(),
+            user_password : $('.form > #id_password').val()
+        };
+        $.ajax({
+            type: "get",
+            url : BASE_URL+"users/login",
+            data : Data,
+            timeout : 0,
+            success: function(data){
+
+                toastr.success(data.user_name+'님 안녕하세요.');
+
+                TweenMax.to($('#curtain'), 1, {
+                    opacity: 0,
+                    ease: Power1.easeInOut,
+                    repeat: 0,
+                    onComplete : function(){
+                        //MakingUserListPage();
+                        location.replace(BASE_URL+"main");
+                        socket.emit('login', data);
+                    }
+                });
+
+            },
+            error: function(err){
+                toastr.warning(err.responseJSON.message);
+            }
+        });
+      });
+
+     $(".close").on('click',function(){
+      toastr.warning("로그인을 먼저 하세요");
+    });
+    
+  </script>
+  </body>
+</html>

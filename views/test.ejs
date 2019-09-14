@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Socket.IO chat</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/Assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/Assets/css/font-awesome.css"/>
+  </head>
+  <body>
+    <div id="curtain">
+    </div>
+
+    <div class="wrapper">
+    <div class="container">
+        <div class="left">
+            <div class="top">
+                <input id='search_txt' type="text" />
+            </div>
+            <ul id="people" class="people">
+            </ul>
+            <div id="bottom-bar">
+                <% if(user_id){ %>
+                        <button id="login" onclick="Logout();return false;"> <span>logout</span></button>
+                    <% }else{ %>
+                        <button id="login" class="mybutton" onclick="Login();return false;"> <span>login</span></button>
+                    <% } %>
+
+                
+                <button id="signin" class="mybutton" onclick="SignIn();return false;"> <span>sign in</span></button>
+            </div>
+        </div>
+        <div class="right">
+            <div class="top">
+                <span><img class="profile" src="http://postfiles8.naver.net/20110712_167/ohjae0501_1310452533906x1ToR_JPEG/38271_1.jpg?type=w2" alt="" /><span class="name">Main Page</span></span>
+            </div>
+            <div class="chat" data-chat="person1" id="person1">
+            </div>
+            <div class="write">
+                <a href="javascript:;" class="write-link attach"></a>
+                <input id="m" type="text" />
+                <input type="hidden" id="user" value="<%=user_name%>"'" />
+                <input type="hidden" id="userImg" value="<%=img%>"/>
+                 <input type="hidden" id="user_id" value="<%=user_id%>"/>
+                <a id="send" class="write-link send"></a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src='https://code.jquery.com/jquery.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/Assets/js/script.js"></script>
+  <script src="/Assets/js/jquery-ui.min.js"></script>
+  <script src="/Assets/js/jquery.blockUI.js"></script>
+  </body>
+</html>
+    
